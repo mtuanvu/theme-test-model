@@ -1,42 +1,41 @@
 .collection-page {
-    padding: 20px;
-  }
-  
-  .collection-header {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  
-  .product-card {
-    text-align: center;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-    transition: box-shadow 0.3s;
-  }
-  
-  .product-card img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  .product-card:hover {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .collection-header h1 {
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  .sold-out {
-    color: red;
-    font-weight: bold;
-  }
-  
+  padding: 20px;
+}
+
+.collection-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  transition: box-shadow 0.3s;
+}
+
+.product-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.collection-header h1 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.sold-out {
+  color: red;
+  font-weight: bold;
+}

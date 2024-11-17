@@ -1,0 +1,61 @@
+.collection-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    padding: 10px 0;
+    border: none;
+    margin-bottom: 20px;
+  }
+  
+  .collection-filters .filter-group {
+    margin: 0;
+  }
+  
+  .collection-filters label {
+    display: inline-block;
+    font-weight: normal;
+    margin-right: 10px;
+  }
+  
+  .collection-filters select,
+  .collection-filters input {
+    width: auto;
+    display: inline-block;
+    padding: 5px 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 14px;
+  }
+  
+  .collection-filters input {
+    max-width: 80px;
+  }
+  
+  .collection-filters button {
+    background: #0073e6;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .collection-filters button:hover {
+    background: #005bb5;
+  }
+  
+  /* Thiết lập cho từng nhóm filter */
+  .collection-filters .filter-group {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+  
+  /* Giữ bố cục ngang */
+  .collection-filters form {
+    display: flex;
+    align-items: center;
+  }
+  
