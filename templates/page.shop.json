@@ -1,0 +1,11 @@
+{
+    "sections": {
+      "shop-section": {
+        "type": "shop-section"
+      }
+    },
+    "order": [
+      "shop-section"
+    ]
+  }
+  
