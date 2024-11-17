@@ -1,18 +1,19 @@
 {
     "sections": {
       "main": {
-        "type": "shop-section",
+        "type": "collection-template",
         "settings": {
-          "heading": "Welcome to Shop",
           "heading_size": "h1",
-          "color_scheme": "scheme-1",
+          "show_collection_description": true,
+          "enable_sorting": true,
+          "enable_filters": true,
           "padding_top": 36,
           "padding_bottom": 36
         }
       }
     },
     "order": [
-      "main",
+      "main"
     ]
   }
   

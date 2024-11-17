@@ -1,0 +1,40 @@
+<section class="collection-page">
+    <header class="collection-header">
+      <h1>{{ collection.title }}</h1>
+      {% if section.settings.show_collection_description %}
+        <p>{{ collection.description }}</p>
+      {% endif %}
+    </header>
+  
+    <!-- Bộ lọc -->
+    {% if section.settings.enable_filters %}
+      <div class="filters">
+        <form method="get" action="">
+          <label for="availability">Filter by Availability:</label>
+          <select id="availability" name="filter[availability]">
+            <option value="">All</option>
+            <option value="available">Available</option>
+            <option value="sold_out">Sold Out</option>
+          </select>
+          <button type="submit">Apply</button>
+        </form>
+      </div>
+    {% endif %}
+  
+    <!-- Danh sách sản phẩm -->
+    <div class="products-grid">
+      {% for product in collection.products %}
+        <div class="product-card">
+          <a href="{{ product.url }}">
+            <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.title }}">
+            <h2>{{ product.title }}</h2>
+          </a>
+          <p>{{ product.price | money }}</p>
+          {% unless product.available %}
+            <p class="sold-out">Sold Out</p>
+          {% endunless %}
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+  
