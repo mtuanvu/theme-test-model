@@ -2,64 +2,72 @@
 <link rel="stylesheet" href="{{ 'collection-filters.css' | asset_url }}">
 
 <section class="collection-page">
-    <header class="collection-header">
-      <h1>{{ collection.title }}</h1>
-      {% if section.settings.show_collection_description %}
-        <p>{{ collection.description }}</p>
-      {% endif %}
-    </header>
-  
-    <!-- Bộ lọc -->
-<div class="filters collection-filters">
+  <header class="collection-header">
+    <h1>{{ collection.title }}</h1>
+    {% if section.settings.show_collection_description %}
+      <p>{{ collection.description }}</p>
+    {% endif %}
+  </header>
+
+  <!-- Bộ lọc -->
+  <div class="filters collection-filters">
     <form id="filter-form">
-        <!-- Filter by Availability -->
-        <div class="filter-group">
-            <label for="availability">Filter by Availability:</label>
-            <select id="availability" name="availability">
-                <option value="">All</option>
-                <option value="available">Available</option>
-                <option value="sold_out">Sold Out</option>
-            </select>
-        </div>
+      <!-- Filter by Availability -->
+      <div class="filter-group">
+        <label for="availability">Filter by Availability:</label>
+        <select id="availability" name="availability">
+          <option value="">All</option>
+          <option value="available">Available</option>
+          <option value="sold_out">Sold Out</option>
+        </select>
+      </div>
 
-        <!-- Filter by Price -->
-        <div class="filter-group">
-            <label for="min-price">Price Range:</label>
-            <input type="number" id="min-price" name="min_price" placeholder="Min Price" min="0">
-            <input type="number" id="max-price" name="max_price" placeholder="Max Price" min="0">
-        </div>
+      <!-- Filter by Price -->
+      <div class="filter-group">
+        <label for="min-price">Price Range:</label>
+        <input type="number" id="min-price" name="min_price" placeholder="Min Price" min="0">
+        <input type="number" id="max-price" name="max_price" placeholder="Max Price" min="0">
+      </div>
 
-        <!-- Sort by -->
-        <div class="filter-group">
-            <label for="sort-by">Sort by:</label>
-            <select id="sort-by" name="sort_by">
-                <option value="title-asc">Alphabetically, A-Z</option>
-                <option value="title-desc">Alphabetically, Z-A</option>
-                <option value="price-asc">Price, Low to High</option>
-                <option value="price-desc">Price, High to Low</option>
-            </select>
-        </div>
+      <!-- Sort by -->
+      <div class="filter-group">
+        <label for="sort-by">Sort by:</label>
+        <select id="sort-by" name="sort_by">
+          <option value="title-asc">Alphabetically, A-Z</option>
+          <option value="title-desc">Alphabetically, Z-A</option>
+          <option value="price-asc">Price, Low to High</option>
+          <option value="price-desc">Price, High to Low</option>
+        </select>
+      </div>
 
-        <button type="submit">Apply Filters</button>
+      <button type="submit">Apply Filters</button>
     </form>
-</div>
+  </div>
 
-<!-- Danh sách sản phẩm -->
-<div id="products-grid" class="products-grid">
+  <!-- Danh sách sản phẩm -->
+  <div id="products-grid" class="products-grid">
     {% for product in collection.products %}
-    <div class="product-card" data-available="{{ product.available }}" data-price="{{ product.price | money_without_currency }}">
+      <div
+        class="product-card"
+        data-available="{{ product.available }}"
+        data-price="{{ product.price | money_without_currency }}"
+      >
         <a href="{{ product.url }}">
-            <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.title }}">
-            <h2>{{ product.title }}</h2>
+          <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.title }}">
+          <h2>{{ product.title }}</h2>
         </a>
-        <p>{{ product.price | money }}</p>
+        {% if product.compare_at_price > product.price %}
+          <p class="sale-price">{{ product.price | money }}</p>
+          <p class="original-price">{{ product.compare_at_price | money }}</p>
+        {% else %}
+          <p>{{ product.price | money }}</p>
+        {% endif %}
         {% unless product.available %}
-        <p class="sold-out">Sold Out</p>
+          <p class="sold-out">Sold Out</p>
         {% endunless %}
-    </div>
+      </div>
     {% endfor %}
-</div>
-
+  </div>
 </section>
 
 <script src="{{ 'collection-filters.js' | asset_url }}" defer></script>

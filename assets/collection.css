@@ -21,6 +21,21 @@
   transition: box-shadow 0.3s;
 }
 
+/* Giá gốc với gạch ngang */
+.product-card .original-price {
+  color: gray;
+  font-size: 1.5rem;
+  text-decoration: line-through;
+  margin-left: 5px;
+}
+
+/* Giá giảm */
+.product-card .sale-price {
+  color: red;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
 .product-card img {
   max-width: 100%;
   height: auto;
