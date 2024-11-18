@@ -10,13 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const productCards = Array.from(productGrid.querySelectorAll('.product-card'));
 
     const filterProducts = () => {
+        const collection = document.getElementById('collection').value;
         const availability = document.getElementById('availability').value;
         const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
         const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
         const sortBy = document.getElementById('sort-by').value;
 
-        // Filter by Availability
+        // Filter by Collection
         let filteredProducts = productCards.filter(product => {
+            if (!collection) return true; // Hiển thị tất cả nếu không chọn collection
+            return product.dataset.collection === collection;
+        });
+
+        // Filter by Availability
+        filteredProducts = filteredProducts.filter(product => {
             const isAvailable = product.dataset.available === 'true';
             if (availability === 'available') return isAvailable;
             if (availability === 'sold_out') return !isAvailable;
@@ -40,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
             filteredProducts.sort((a, b) => parseFloat(b.dataset.price) - parseFloat(a.dataset.price));
         }
 
-        // Clear and Render Filtered Products
         productGrid.innerHTML = '';
         filteredProducts.forEach(product => productGrid.appendChild(product));
     };

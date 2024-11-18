@@ -12,6 +12,17 @@
   <!-- Bộ lọc -->
   <div class="filters collection-filters">
     <form id="filter-form">
+      <!-- Filter by Collection -->
+      <div class="filter-group">
+        <label for="collection">Filter by Collection:</label>
+        <select id="collection" name="collection">
+          <option value="">All Collections</option>
+          {% for collection in collections %}
+            <option value="{{ collection.handle }}">{{ collection.title }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
       <!-- Filter by Availability -->
       <div class="filter-group">
         <label for="availability">Filter by Availability:</label>
@@ -46,26 +57,28 @@
 
   <!-- Danh sách sản phẩm -->
   <div id="products-grid" class="products-grid">
-    {% for product in collection.products %}
-      <div
-        class="product-card"
-        data-available="{{ product.available }}"
-        data-price="{{ product.price | money_without_currency }}"
-      >
-        <a href="{{ product.url }}">
-          <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.title }}">
-          <h2>{{ product.title }}</h2>
-        </a>
-        {% if product.compare_at_price > product.price %}
-          <p class="sale-price">{{ product.price | money }}</p>
-          <p class="original-price">{{ product.compare_at_price | money }}</p>
-        {% else %}
-          <p>{{ product.price | money }}</p>
-        {% endif %}
-        {% unless product.available %}
-          <p class="sold-out">Sold Out</p>
-        {% endunless %}
-      </div>
+    {% for collection in collections %}
+      {% for product in collection.products %}
+        <div
+          class="product-card"
+          data-collection="{{ collection.handle }}"
+          data-available="{{ product.available }}"
+          data-price="{{ product.price | money_without_currency }}">
+          <a href="{{ product.url }}">
+            <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.title }}">
+            <h2>{{ product.title }}</h2>
+          </a>
+          {% if product.compare_at_price > product.price %}
+            <p class="sale-price">{{ product.price | money }}</p>
+            <p class="original-price">{{ product.compare_at_price | money }}</p>
+          {% else %}
+            <p>{{ product.price | money }}</p>
+          {% endif %}
+          {% unless product.available %}
+            <p class="sold-out">Sold Out</p>
+          {% endunless %}
+        </div>
+      {% endfor %}
     {% endfor %}
   </div>
 </section>
